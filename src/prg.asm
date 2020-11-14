@@ -36,17 +36,20 @@ NMIProcedures:
     .addr DoNothing
 
 NMI:
+    ldx #$FF
     txs
-    pha
     lda Procedure
     asl a
     tax
+    jsr StartProcedure
+:   jmp :-
+
+StartProcedure:
     lda NMIProcedures, x
     sta ProcedureAddr
     lda NMIProcedures+1, x
     sta ProcedureAddr+1
     jmp (ProcedureAddr)
-:   jmp :-
 
 .macro WriteBinaryToPPU PPU, Start, Len
     lda #>PPU
