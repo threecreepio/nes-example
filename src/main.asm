@@ -1,4 +1,4 @@
-; convert ascii
+; convert ascii strings
 ; space
 .charmap    $20,   $34
 ; !
@@ -88,9 +88,9 @@
 .linecont +
 
 .segment "INES"
-.byte $4E,$45,$53,$1A
-.byte 2 ; prg
-.byte 1 ; chr
+.byte $4E,$45,$53,$1A ; ines magic header
+.byte 2 ; number of prg sements
+.byte 1 ; number of chr segments
 .byte %00000001 ; flags 6
 
 .segment "PRG"
